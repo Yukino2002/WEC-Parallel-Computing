@@ -1,7 +1,7 @@
 import multiprocessing
 
 # __sum is used to calculate the sum of the different array slices
-# we pass all the different parts of the array independently
+# we pass the sum of all the different parts of the array independently
 def __sum(arr, arr_sum):
     arr_sum.value += sum(arr)
 
@@ -9,8 +9,8 @@ if __name__ == '__main__':
     arr = [x for x in range(101)]
     n = len(arr)
 
-    # multiprocessing library has .Value("data_type", initial_value, lock) function for sharing data between processes
-    arr_sum = multiprocessing.Value("i", 0, lock = False)
+    # multiprocessing library has .Value("data_type", initial_value) function for sharing data between processes
+    arr_sum = multiprocessing.Value("i", 0)
 
     # initialising a list to store the details of all the processes we opened
     processes = []
