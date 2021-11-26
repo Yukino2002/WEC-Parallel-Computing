@@ -10,7 +10,6 @@ if __name__ == '__main__':
     t = int(input())
     for _ in range(t):
 
-        print("Enter the array elements: ", end = "")
         arr = list(map(int, input().split()))
         n = len(arr)
         # multiprocessing library has .Value("data_type", initial_value) function for sharing data between processes
