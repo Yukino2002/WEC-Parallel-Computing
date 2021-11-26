@@ -18,11 +18,11 @@ Using a loop, I used the multiprocessing.Process() function to initiate all the 
 
 I also appended all the process details in a list, and started all of them by using the .start() function.
 
-All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python, and added it to 'arr_sum'.
+</br>All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python, and added it to 'arr_sum'.
 
 Then I used another loop to join all the processes back to the main process after their execution. The .join() stops the main program from running the next set of commands until all the processes join back.
 
-Finally, I displayed the details for all the 8 processes used, and the final sum of the array calculated through multiprocessing.
+</br>Finally, I displayed the details for all the 8 processes used, and the final sum of the array calculated through multiprocessing.
 
 
 
