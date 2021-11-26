@@ -1,37 +1,52 @@
 import multiprocessing
-
 from collections import defaultdict
+
 Graph = defaultdict(list)
 
-def edge(Graph, u, v):
+def Edge(u, v):
     Graph[u].append(v)
+    Graph[v].append(u)
 
-def BFS(Graph, s, distance):
+def Neighbours(node):
+    neighbour = []
+    for nodes in Graph[node]:
+        if Visited[nodes] is False:
+            neighbour.append(nodes)
+            Visited[nodes] = True
+            Distance[nodes] = Distance[node] + 1
     
-    visited = [False] * (max(Graph) + 1)
+    return neighbour
 
-    queue = []
-    queue.append(s)
-    visited[s] = True
+def BFS(level):
+    
 
-    while queue:
-        s = queue.pop(0)
+    while(level):
+        next_level = []
+        cpu = multiprocessing.cpu_count()
+        pool = multiprocessing.Pool(processes = cpu)
+        next_level = pool.map(Neighbours, [node for node in level])
+        flat_level = []
+        for lst in next_level:
+            for node in lst:
+                flat_level.append(node)   
+        level = flat_level
 
-        for vertex in Graph[s]:         
 
-            if visited[vertex] == False:
-                queue.append(vertex)
-                distance[vertex] = distance[s] + 1
-                visited[vertex] = True
+if __name__ == '__main__':
 
+    print("Enter the number of nodes: ", end = "")
+    n = int(input())
+    print("Enter the number of edges: ", end = "")
+    e = int(input())
 
-edge(Graph, 0, 1)
-edge(Graph, 0, 2)
-edge(Graph, 1, 2)
-edge(Graph, 2, 0)
-edge(Graph, 2, 3)
-edge(Graph, 3, 3)
+    for _ in range(e):
+        u, v = map(int, input().split())
+        Edge(u, v)
 
-distance = [0 for _ in range(4)]
-BFS(Graph, 2, distance)
-print(distance)
+    Distance = multiprocessing.Array('i', n)
+    Visited = multiprocessing.Array('i', n)
+    
+    Visited[0] = True
+
+    BFS([0])
+    print(*Distance[:])
