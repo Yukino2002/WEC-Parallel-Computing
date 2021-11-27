@@ -16,6 +16,7 @@ def Edge(u, v):
 # It only appends those neighbouring vertices which have a visited truth value of false
 # or have not been visited yet
 def Neighbours(node):
+    Graph[node]
     neighbour = []
     for nodes in Graph[node]:
         if Visited[nodes] == False:
