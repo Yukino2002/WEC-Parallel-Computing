@@ -18,7 +18,7 @@ Using a loop, I used the multiprocessing.Process() function to initiate all the 
 
 I also appended all the process details in a list, and started all of them by using the .start() function.
 
-</br>All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python, and added it to 'arr_sum'.
+</br>All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python. To update the total sum in 'arr_sum' in the shared memory, we also used locks to prevent race condition. Race condition occurs when more than one process try to change the same dat or variable at the same time. This can result in unpredictable outputs. We use lock.acquire() and lock.release() to place and remove the lock respectively, once a lock is placed it cannot be accesses by another process till the lock is removed.
 
 Then I used another loop to join all the processes back to the main process after their execution. The .join() stops the main program from running the next set of commands until all the processes join back.
 
@@ -27,7 +27,7 @@ Then I used another loop to join all the processes back to the main process afte
 
 
 </br></br><b>Task 2:</b> Parallel program for finding shortest distance for all nodes from a given node in an unweighted graph:</br></br>
-The shortest path of all the nodes from a particular node is calculated using BFS or Breadth First Search. It was evident that the original BFS algorithm had to be modified someway to initialise multiple processes to solve the question parallelly. But if I tried to implement multiprocessing on the entire algorithm, it would show error, as too many processes would get opened at once. So, I tried applying multiprocessing on every level of BFS. For every node in a particular level, I calculated the number of its unvisited neighbours and appended them to another list.
+The shortest path of all the nodes from a particular node is calculated using BFS or Breadth First Search. It was evident that the original BFS algorithm had to be modified someway to initialise multiple processes to solve the question parallelly. But if I tried to implement multiprocessing on the entire algorithm, it would fail to run, as too many processes would be opened at once. So, I tried applying multiprocessing on every level of BFS. For every node in a particular level, I calculated the number of its unvisited neighbours and appended them to another list.
 
 </br>Ex: nodes(n) = 6, edges(e) = 4, e = {(0, 1), (0, 2), (1, 5), (2, 3), (2, 4)}, source(s) = 0
 The consecutive levels would be as follows:
@@ -40,4 +40,4 @@ The consecutive levels would be as follows:
 
 </br>The shortest distance can be easily calculated because that aspect of the solution is no different from the regular BFS algorithm, i.e., Distance[node] = Distance[parent] + 1. We also do not need to worry about mulitple traversals as we use the Visited array to store whether they have already been visited or not.
 
-</br>Finally, I print the list of shortest distance of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. They can't be reached because they are not connected)
+</br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. They can't be reached because they are not connected)
