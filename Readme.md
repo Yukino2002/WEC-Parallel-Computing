@@ -44,3 +44,4 @@ The consecutive levels would be as follows:
 
 </br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. Meaning, they can not be reached because they are not connected)
 
+</br>We can see that our bfs algorithm using multiprocessing is slower compared to the serial bfs code we designed.

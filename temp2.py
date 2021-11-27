@@ -16,13 +16,20 @@ def Edge(u, v):
 # It only appends those neighbouring vertices which have a visited truth value of false
 # or have not been visited yet
 def Neighbours(node):
+    global Graph
+
+    print(node)
+
     neighbour = []
+    print(Graph[0], Graph[node])
+
     for nodes in Graph[node]:
         if Visited[nodes] == False:
             neighbour.append(nodes)
             Visited[nodes] = True
             Distance[nodes] = Distance[node] + 1
     
+    print(neighbour)
     return neighbour
 
 
@@ -34,16 +41,24 @@ def Neighbours(node):
 # We convert the list of lists into a list and again repeat the process
 def BFS_Multiprocessing(level):
     
-    while(len(level)):
-        next_level = []
-        cpu = multiprocessing.cpu_count()
-        pool = multiprocessing.Pool(processes = cpu)
-        next_level = pool.map(Neighbours, [node for node in level])
-        flat_level = []
-        for lst in next_level:
-            for node in lst:
-                flat_level.append(node)   
-        level = flat_level
+    # while(len(level)):
+    print(level)
+
+    next_level = []
+    cpu = multiprocessing.cpu_count()
+    pool = multiprocessing.Pool(processes = cpu)
+
+    print(Graph[0])
+    
+    next_level = pool.map(Neighbours, [node for node in level])
+
+    print(next_level)
+
+    flat_level = []
+    for lst in next_level:
+        for node in lst:
+            flat_level.append(node)   
+    level = flat_level
 
 
 if __name__ == '__main__':
@@ -61,7 +76,7 @@ if __name__ == '__main__':
 
     Visited[0] = True
     BFS_Multiprocessing([0])
-    print(*Distance[:])
-    
+    # print(*Distance[:])
+    print(Graph[0])
     ed = time.time()
-    print(ed - st)
+    # print(ed - st)

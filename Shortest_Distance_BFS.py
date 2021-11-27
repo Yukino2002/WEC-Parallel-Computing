@@ -1,4 +1,5 @@
 from collections import defaultdict
+import time
 Graph = defaultdict(list)
 
 def edge(Graph, u, v):
@@ -31,5 +32,10 @@ for _ in range(e):
 
 distance = [0] * (n)
 
+st = time.time()
+
 BFS(Graph, 0, distance, n)
 print(*distance)
+
+ed = time.time()
+print(ed - st)
