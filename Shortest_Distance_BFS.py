@@ -32,4 +32,4 @@ for _ in range(e):
 distance = [0] * (n)
 
 BFS(Graph, 0, distance, n)
-print(distance)
+print(*distance)

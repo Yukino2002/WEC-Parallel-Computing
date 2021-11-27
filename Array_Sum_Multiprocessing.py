@@ -2,8 +2,11 @@ import multiprocessing
 
 # __sum is used to calculate the sum of the different array slices
 # we pass the sum of all the different parts of the array independently
-def __sum(arr, arr_sum):
-    arr_sum.value += sum(arr)
+def __sum(arr, arr_sum, lock):
+    temp_sum = sum(arr)
+    lock.acquire()
+    arr_sum.value += temp_sum
+    lock.release()
 
 if __name__ == '__main__':
     print("Enter the number of test cases: ", end = "")
@@ -15,6 +18,8 @@ if __name__ == '__main__':
         # multiprocessing library has .Value("data_type", initial_value) function for sharing data between processes
         arr_sum = multiprocessing.Value("i", 0)
 
+        # lock so that more than one process do not access the same variable simultaneously
+        lock = multiprocessing.Lock()
         # initialising a list to store the details of all the processes we opened
         processes = []
         # the number of process we want to run independently
@@ -26,7 +31,7 @@ if __name__ == '__main__':
 
         for i in range(num_processes):
             # multiprocessing.process(target, args) -> target = function to be executed by the process, args = arguments to be passed in target
-            p = multiprocessing.Process(target = __sum, args = [arr[i*(n//num_processes): min(m, (i+1)*(n//num_processes))], arr_sum])
+            p = multiprocessing.Process(target = __sum, args = [arr[i*(n//num_processes): min(m, (i+1)*(n//num_processes))], arr_sum, lock])
             processes.append(p)
 
             # .start() begins the execution of the process
