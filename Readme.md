@@ -40,4 +40,7 @@ The consecutive levels would be as follows:
 
 </br>The shortest distance can be easily calculated because that aspect of the solution is no different from the regular BFS algorithm, i.e., Distance[node] = Distance[parent] + 1. We also do not need to worry about mulitple traversals as we use the Visited array to store whether they have already been visited or not.
 
-</br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. They can't be reached because they are not connected)
+</br>After running the program, the user only needs to enter the number of nodes, edges and the edges data set. We need to pass the source from where we want to calculate all the distances.
+
+</br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. Meaning, they can not be reached because they are not connected)
+
