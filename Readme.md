@@ -6,7 +6,7 @@
 </br><b>Basic Task:</b> Finding sum of array</br></br>
 One can implement the following task using multiple methods. I solved it in Python by using the multiprocessing module available.
 
-</br>In the main function, I initialised an array, whose size can be changed. For this task I took it as 101 and stored all the elements from 0-100 in it.
+</br>In the main function, I initialised an array. The user needs to enter the number of test cases before that, and then enter the elements of the array for each test case.
 
 I decided to split the process of adding all the elements of the array into 8 independent processes. Each process would calculate the sum of some part of the array independently, and then finally display the total sum by adding their independently calculated sums.
 
@@ -22,7 +22,8 @@ I also appended all the process details in a list, and started all of them by us
 
 Then I used another loop to join all the processes back to the main process after their execution. The .join() stops the main program from running the next set of commands until all the processes join back.
 
-</br>Finally, I displayed the details for all the 8 processes used, and the total sum of the array calculated through multiprocessing.
+</br>Finally, I displayed total sum of the array calculated through multiprocessing.
 
 
 
+</br></br><b>Task 2:</b> Parallel program for finding shortest distance for all nodes from a given node in an unweighted task:</br></br>

@@ -1,14 +1,13 @@
-import multiprocessing
-
 from collections import defaultdict
 Graph = defaultdict(list)
 
 def edge(Graph, u, v):
     Graph[u].append(v)
+    Graph[v].append(u)
 
-def BFS(Graph, s, distance):
+def BFS(Graph, s, distance, n):
     
-    visited = [False] * (max(Graph) + 1)
+    visited = [False] * (n)
 
     queue = []
     queue.append(s)
@@ -25,15 +24,12 @@ def BFS(Graph, s, distance):
                 visited[vertex] = True
 
 
-print("Enter the number of nodes: ", end ="")
-n = int(input())
-print("Enter the number of edges: ", end = "")
-e = int(input())
+n, e = map(int, input().split())
 for _ in range(e):
     u, v = map(int, input().split())
     edge(Graph, u, v)
 
 distance = [0] * (n)
 
-BFS(Graph, 0, distance)
+BFS(Graph, 0, distance, n)
 print(distance)

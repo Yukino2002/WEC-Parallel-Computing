@@ -34,11 +34,11 @@ def Neighbours(node):
 # We convert the list of lists into a list and again repeat the process
 def BFS_Multiprocessing(level):
     
-    while(level):
+    while(len(level)):
         next_level = []
         cpu = multiprocessing.cpu_count()
         pool = multiprocessing.Pool(processes = cpu)
-        next_level = pool.map(Neighbours, level)
+        next_level = pool.map(Neighbours, [node for node in level])
         flat_level = []
         for lst in next_level:
             for node in lst:
@@ -47,19 +47,16 @@ def BFS_Multiprocessing(level):
 
 
 if __name__ == '__main__':
-    print("Enter the number of test cases: ", end = "")
-    t = int(input())
-    for _ in range(t):
-        n, e = map(int, input().split())
+    n, e = map(int, input().split())
 
-        # initialsing these as .Array() so that the data can be shared among different processes
-        Distance = multiprocessing.Array('i', n)
-        Visited = multiprocessing.Array('i', n)
+    # initialsing these as .Array() so that the data can be shared among different processes
+    Distance = multiprocessing.Array('i', n)
+    Visited = multiprocessing.Array('i', n)
 
-        for _ in range(e):
-            u, v = map(int, input().split())
-            Edge(u, v)
+    for _ in range(e):
+        u, v = map(int, input().split())
+        Edge(u, v)
 
-        
-        BFS_Multiprocessing([0])
-        print(*Distance[:])
+    
+    BFS_Multiprocessing([0])
+    print(*Distance[:])
