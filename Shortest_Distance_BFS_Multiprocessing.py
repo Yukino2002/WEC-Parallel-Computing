@@ -45,12 +45,15 @@ def BFS_Multiprocessing(level):
             for node in lst:
                 flat_level.append(node)   
         level = flat_level
+        pool.close()
+        pool.join()
 
 
 if __name__ == '__main__':
+    # number of nodes and edges respectively
     n, e = map(int, input().split())
 
-    # initialsing these as .Array() so that the data can be shared among different processes
+    # initialsing these as multiprocessing.Array() so that the data can be shared among different processes
     Distance = multiprocessing.Array('i', n)
     Visited = multiprocessing.Array('i', n)
 
@@ -60,9 +63,12 @@ if __name__ == '__main__':
 
     st = time.time()
 
-    Visited[0] = True
-    BFS_Multiprocessing([0])
+    # source can be changed as per the user
+    source = 0
+    Visited[source] = True
+    BFS_Multiprocessing([source])
     print(*Distance[:])
     
+    # displaying time taken for parallel BFS function to execute
     ed = time.time()
     print(ed - st)

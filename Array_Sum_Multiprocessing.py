@@ -1,4 +1,5 @@
 import multiprocessing
+import time
 
 # __sum is used to calculate the sum of the different array slices
 # we pass the sum of all the different parts of the array independently
@@ -17,7 +18,7 @@ if __name__ == '__main__':
 
     # lock so that more than one process do not access the same variable simultaneously
     lock = multiprocessing.Lock()
-    # initialising a list to store the details of all the processes we opened
+    
     processes = []
     # the number of process we want to run independently
     num_processes = 8
@@ -25,6 +26,8 @@ if __name__ == '__main__':
     m = n
     # to get the nearest multiple of num_processes, so that we do not miss any elements of the array
     n = (n//num_processes)*num_processes + num_processes
+
+    st = time.time()
 
     for i in range(num_processes):
         # multiprocessing.process(target, args) -> target = function to be executed by the process, args = arguments to be passed in target
@@ -39,4 +42,7 @@ if __name__ == '__main__':
         # we use .join() which stops the current program till the other processes join
         p.join()
 
+    ed = time.time()
+    
     print(arr_sum.value)
+    print(ed - st)
