@@ -1,28 +1,33 @@
 <h1><b>WEC-Systems-Parallel-Computing-Assignment:</b></h1>
-<h2><b>Solution:</b></h2>
+<h1><b>Solution:</b></h1>
 
+</br><h3>One can implement the following tasks using multiple methods. I solved it in Python by using the multiprocessing module available.</h3>
 
+</br><h2><b>Task 1: Finding sum of array</b></h2>
 
-</br><b>Task 1:</b> Finding sum of array</br></br>
-One can implement the following task using multiple methods. I solved it in Python by using the multiprocessing module available.
-
-</br>In the main function, I initialised an array. The user needs to enter the elements of the array.
+</br><h3><b>Slicing the array:</h3></b></br>
 
 I decided to split the process of adding all the elements of the array into 8 independent processes. Each process would calculate the sum of some part of the array independently, and then finally display the total sum by adding their independently calculated sums. One can also divide it into more than 8 processes, but due to the overhead of creating so many processes, the execution time will increase.
+
+</br><h3><b>Defining the variables and functions:</b></h3></br>
 
 To implement this, I declared a variable 'arr_sum' using the multiprocessing.Value() function which gives us a ctype object from shared memory to be used by multiple processes. Shared memory is memory that might be accessed simultaneously by more than one processes with an intent to share data among them. In the .Value("data_type", initial_value) call, we pass in the type of variable(int or float), and also an initial value.
 
 </br>I sliced the array into 8 subarrays, and defined a function '__sum(arr, arr_sum, lock)'. The first argument took the different subarrays, the second was the variable we declared to store the total sum of all the prrocesses and lock is discussed below.
 
+</br><h3><b>Initialising processes parallelly:</b></h3></br>
+
 Using a loop, I used the multiprocessing.Process() function to initiate all the processes. The .Process(target, args) took two arguments, the function that the process needed to execute and the arguments, that the target function needed to be executed.
 
 I also appended all the process details in a list, and started all of them parallelly using .start() function.
 
-</br>All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python. To update the total sum in 'arr_sum' in the shared memory, I also used locks to prevent race condition. Race condition occurs when multiple processes try to change the same data or variable at the same time. This can result in unpredictable outputs. We use lock.acquire() and lock.release() to place and remove the lock respectively, once a lock is placed it cannot be accessed by another process till the lock is removed.
+</br><h3><b>Calculating the sum:</b></h3></br>
+
+All the processes, now started computing the sum of their subarray independently using the inbuilt sum() function in python. To update the total sum in 'arr_sum' in the shared memory, I also used locks to prevent race condition. Race condition occurs when multiple processes try to change the same data or variable at the same time. This can result in unpredictable outputs. We use lock.acquire() and lock.release() to place and remove the lock respectively, once a lock is placed it cannot be accessed by another process till the lock is removed.
 
 Then I used another loop to join all the processes back to the main process after their execution. The .join() stops the main program from running the next set of commands until all the processes join back.
 
-</br>Finally, I displayed total sum of the array calculated through multiprocessing.
+</br><h3>Finally, I displayed total sum of the array calculated through multiprocessing.</h3>
 
 
 
