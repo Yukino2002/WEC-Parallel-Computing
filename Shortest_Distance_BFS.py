@@ -36,10 +36,12 @@ for _ in range(e):
 distance = [0] * (n)
 
 st = time.time()
+# user can change the source from which distance is to be calculated
+source = 0
 
-BFS(Graph, 0, distance, n)
+BFS(Graph, source, distance, n)
 print(*distance)
 
-# displaying the time taken for serial execution of BFS
+# displaying the time taken for execution of serial BFS
 ed = time.time()
 print(ed - st)
