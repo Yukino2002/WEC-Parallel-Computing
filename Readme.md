@@ -1,7 +1,7 @@
 <h1><b>WEC-Systems-Parallel-Computing-Assignment:</b></h1>
 <h1><b>Solution:</b></h1>
 
-</br><h3>One can implement the following tasks using multiple methods. I solved it in Python by using the multiprocessing module available.</h3>
+</br><h4>One can implement the following tasks using multiple methods. I solved it in Python by using the multiprocessing module available.</h4>
 
 </br><h2><b>Task 1: Finding sum of array</b></h2>
 
