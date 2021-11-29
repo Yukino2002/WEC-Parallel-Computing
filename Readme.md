@@ -27,7 +27,7 @@ All the processes, now started computing the sum of their subarray independently
 
 Then I used another loop to join all the processes back to the main process after their execution. The .join() stops the main program from running the next set of commands until all the processes join back.
 
-</br><h3>Finally, I displayed total sum of the array calculated through multiprocessing.</h3>
+</br>Finally, I displayed total sum of the array calculated through multiprocessing.
 
 
 </br><h2><b>Task 2: Finding shortest distance for all nodes from a given node in an unweighted graph</b></h2>
@@ -55,4 +55,4 @@ The shortest distance can be easily calculated because that aspect of the soluti
 
 </br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. Meaning, they can not be reached because they are not connected)
 
-</br></br><h3>From the results obtained, we can see that our bfs algorithm using multiprocessing is slower compared to the serial bfs code we designed.</h3>
+</br></br>From the results obtained, we can see that our bfs algorithm using multiprocessing is slower compared to the serial bfs code we designed.
