@@ -56,3 +56,7 @@ The shortest distance can be easily calculated because that aspect of the soluti
 </br>Finally, I print the list of shortest distances of all the nodes from the source. (All other nodes with distance zero apart from the source, are inaccessible. Meaning, they can not be reached because they are not connected)
 
 </br></br>From the results obtained, we can see that our bfs algorithm using multiprocessing is slower compared to the serial bfs code we designed.
+
+
+
+</br></br><b>P.S.</b> The parallel BFS code does not seem to be working on the windows terminal. I tried debugging it and reach the root of the problem, but was unsuccessful. It is working on the linux terminal, but since I do not have linux OS installed on my system, I used Google Cloud linunx terminal for it. It runs as it should on the platform. Please consider this while checking the code. Thank You.
